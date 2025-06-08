@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 50px;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>QR Code Generator</h2>
+  <input type="text" id="urlInput" placeholder="Enter URL here..." />
+  <button onclick="generateQRCode()">Generate QR Code</button>
+  <canvas id="qrCode"></canvas>
+</div>
+
+<!-- QRious library (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/qrious/dist/qrious.min.js"></script>
+<script>
+  function generateQRCode() {
+    const url = document.getElementById('urlInput').value;
+    if (!url) {
+      alert("Please enter a URL!");
+      return;
+    }
+
+    const qr = new QRious({
+      element: document.getElementById('qrCode'),
+      value: url,
+      size: 200,
+      level: 'H'
+    });
+  }
+</script>
+
+</body>
+  </html>
